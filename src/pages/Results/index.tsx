@@ -1,12 +1,16 @@
-import { Col, List, Progress, Row, Typography } from 'antd';
+import { Button, Col, Image, List, Progress, Row, Statistic, Typography } from 'antd';
 import React, { useEffect, useState } from 'react';
+
+import { DownloadOutlined } from '@ant-design/icons';
 
 import styles from './index.less';
 
-import { Statistic } from 'antd';
 import CountUp from 'react-countup';
 
 const formatter = (value: number) => <CountUp end={value} separator="." />;
+
+import ExcelJS from 'exceljs';
+import { saveAs } from 'file-saver';
 
 const { Title } = Typography;
 
@@ -75,6 +79,44 @@ const Results: React.FC = () => {
     setNumeroArvores(Math.ceil((soma / 0.18) * 1.2));
   }, []);
 
+  const handleExportExcel = async () => {
+    const workbook = new ExcelJS.Workbook();
+
+    const storageKeys = {
+      MOVEL: 'itensSelecionadosMovel',
+      ESTACIONARIA: 'itensSelecionadosEstacionaria',
+      ENERGIA: 'itensSelecionadosEnergiaEletrica',
+      EFLUENTE: 'itensSelecionadosEfluente',
+      MOVEL_3: 'itensSelecionadosMovel_3',
+      ESTACIONARIA_3: 'itensSelecionadosEstacionaria_3',
+      ENERGIA_3: 'itensSelecionadosEnergiaEletrica_3',
+      RESIDUO_3: 'itensSelecionadosResiduo_3',
+    };
+
+    await Promise.all(
+      Object.entries(storageKeys).map(([key, storageItem]) => {
+        const items = JSON.parse(localStorage.getItem(storageItem)) || [];
+        const worksheet = workbook.addWorksheet(key);
+
+        const columnKeys = Array.from(new Set(items.flatMap(Object.keys)));
+
+        worksheet.columns = columnKeys.map((columnKey) => ({ header: columnKey, key: columnKey }));
+
+        items.forEach((item) => {
+          worksheet.addRow(item);
+        });
+
+        return Promise.resolve();
+      }),
+    );
+
+    const excelBuffer = await workbook.xlsx.writeBuffer();
+    const excelBlob = new Blob([excelBuffer], {
+      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    });
+    saveAs(excelBlob, 'data.xlsx');
+  };
+
   const scope1 = [
     {
       title: `Total combustão móvel`,
@@ -135,13 +177,11 @@ const Results: React.FC = () => {
       <Title level={3}>Resultados totais</Title>
 
       <Row gutter={16}>
-        <Col span={8} style={{ paddingRight: '8px' }}>
+        <Col span={6} style={{ paddingRight: '8px' }}>
           <div className={styles['enter-group']}>
             <Statistic title="Total de emissões de carbono em tCO2e" value={soma.toFixed(3)} />
           </div>
-        </Col>
 
-        <Col span={8} style={{ paddingRight: '8px' }}>
           <div className={styles['enter-group']}>
             <Statistic
               title="Quantidade de Árvores para Neutralização/Compensação"
@@ -149,6 +189,20 @@ const Results: React.FC = () => {
               precision={2}
               formatter={formatter}
             />
+          </div>
+
+          <Button
+            type="primary"
+            onClick={handleExportExcel}
+            icon={<DownloadOutlined />}
+            className={styles['small-button']}
+          >
+            Exportar para Excel
+          </Button>
+        </Col>
+        <Col span={8} style={{ paddingRight: '8px' }}>
+          <div className={styles.imageContainer}>
+            <Image src={`/images/tree3.svg`} alt="Tree Calculation" preview={false} width={595} />
           </div>
         </Col>
       </Row>
