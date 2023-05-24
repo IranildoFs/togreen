@@ -1,39 +1,111 @@
 .container {
   display: flex;
-  flex-wrap: wrap;
-  padding: 7rem 1rem;
-}
-
-.imageContainer {
-  width: 100%;
-  margin-bottom: 20px;
-  text-align: center;
+  flex-direction: row;
+  padding: 7rem 2rem;
 }
 
 .textContainer {
-  width: 100%;
+  width: 50%;
   padding: 0 20px;
 }
 
 .title {
   margin-bottom: 20px;
   color: #2e5737;
+  font-size: 3rem;
 }
 
-@media (min-width: 768px) {
-  .container {
-    margin-top: 5rem;
-    padding: 0rem 1rem;
-  }
+.subtitle {
+  margin-bottom: 20px;
+  color: #2e5737;
+  font-size: 1.5rem;
+}
+.image {
+  width: 50%;
+}
 
-  .imageContainer {
-    width: 50%;
-    margin-bottom: 1rem;
-    text-align: center;
+@media (max-width: 1200px) {
+  .container {
+    display: flex;
+    flex-direction: row;
+    padding: 3rem 0.5rem;
   }
 
   .textContainer {
+    width: 75%;
+    padding: 0 3px;
+  }
+
+  .title {
+    margin-bottom: 20px;
+    color: #2e5737;
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    margin-bottom: 50px;
+    color: #2e5737;
+    font-size: 1rem;
+  }
+  .image {
+    width: 10%;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 3rem 1rem;
+  }
+
+  .textContainer {
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .title {
+    margin-bottom: 20px;
+    color: #2e5737;
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    margin-bottom: 50px;
+    color: #2e5737;
+    font-size: 1rem;
+  }
+  .image {
     width: 50%;
-    padding: 0 20px;
+  }
+}
+
+@media (max-width: 350px) {
+  .container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0rem 0rem;
+  }
+
+  .textContainer {
+    width: 100%;
+    padding: 0 5px;
+  }
+
+  .title {
+    margin-bottom: 10px;
+    color: #2e5737;
+    font-size: 1.5rem;
+  }
+
+  .subtitle {
+    margin-bottom: 50px;
+    color: #2e5737;
+    font-size: 0.7rem;
+  }
+  .image {
+    width: 25%;
   }
 }

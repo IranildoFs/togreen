@@ -6,6 +6,7 @@ import { read, utils } from 'xlsx';
 
 const { Dragger } = Upload;
 const { Title } = Typography;
+
 const UploadComponent: React.FC = () => {
   const handleDrop = useCallback(async (acceptedFiles) => {
     const file = acceptedFiles[0];
@@ -49,7 +50,7 @@ const UploadComponent: React.FC = () => {
     reader.readAsArrayBuffer(file);
   }, []);
 
-  const { getRootProps, getInputProps } = useDropzone({ onDrop: handleDrop });
+  const { getRootProps } = useDropzone({ onDrop: handleDrop });
 
   return (
     <>
@@ -58,11 +59,8 @@ const UploadComponent: React.FC = () => {
         <p className="ant-upload-drag-icon">
           <InboxOutlined />
         </p>
-        <p className="ant-upload-text">
-          Arraste e solte o arquivo Excel aqui ou clique para fazer o upload.
-        </p>
+        <p className="ant-upload-text">Arraste e solte o arquivo Excel aqui para fazer o upload.</p>
         <p className="ant-upload-hint">Formatos suportados: .xlsx, .xls</p>
-        <input {...getInputProps()} />
       </Dragger>
     </>
   );

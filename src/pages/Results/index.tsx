@@ -121,24 +121,24 @@ const Results: React.FC = () => {
     {
       title: `Total combustão móvel`,
       description: `${totalSelecionadosMovel.toFixed(3)} tCO2e`,
-      percent: ((totalSelecionadosMovel / soma) * 100).toFixed(0),
+      percent: soma ? ((totalSelecionadosMovel / soma) * 100).toFixed(0) : 0,
     },
     {
       title: `Total combustão estacionária `,
       description: `${totalSelecionadosEstacionaria.toFixed(3)} tCO2e`,
-      percent: ((totalSelecionadosEstacionaria / soma) * 100).toFixed(0),
+      percent: soma ? ((totalSelecionadosEstacionaria / soma) * 100).toFixed(0) : 0,
     },
   ];
   const scope2 = [
     {
       title: `Total energia elétrica`,
       description: `${totalSelecionadosEnergia.toFixed(3)} tCO2e`,
-      percent: ((totalSelecionadosEnergia / soma) * 100).toFixed(0),
+      percent: soma ? ((totalSelecionadosEnergia / soma) * 100).toFixed(0) : 0,
     },
     {
       title: `Total efluente`,
       description: `${totalSelecionadosEfluente.toFixed(3)} tCO2e`,
-      percent: ((totalSelecionadosEfluente / soma) * 100).toFixed(0),
+      percent: soma ? ((totalSelecionadosEfluente / soma) * 100).toFixed(0) : 0,
     },
   ];
 
@@ -146,22 +146,22 @@ const Results: React.FC = () => {
     {
       title: `Total combustão móvel`,
       description: `${totalSelecionadosMovel_3.toFixed(3)} tCO2e`,
-      percent: ((totalSelecionadosMovel_3 / soma) * 100).toFixed(0),
+      percent: soma ? ((totalSelecionadosMovel_3 / soma) * 100).toFixed(0) : 0,
     },
     {
       title: `Total combustão estacionária`,
       description: `${totalSelecionadosEstacionaria_3.toFixed(3)} tCO2e`,
-      percent: ((totalSelecionadosEstacionaria_3 / soma) * 100).toFixed(0),
+      percent: soma ? ((totalSelecionadosEstacionaria_3 / soma) * 100).toFixed(0) : 0,
     },
     {
       title: `Total energia elétrica`,
       description: `${totalSelecionadosEnergia_3.toFixed(3)} tCO2e`,
-      percent: ((totalSelecionadosEnergia_3 / soma) * 100).toFixed(0),
+      percent: soma ? ((totalSelecionadosEnergia_3 / soma) * 100).toFixed(0) : 0,
     },
     {
       title: `Total resíduos sólidos`,
       description: `${totalSelecionadosResiduo_3.toFixed(3)} tCO2e`,
-      percent: ((totalSelecionadosResiduo_3 / soma) * 100).toFixed(0),
+      percent: soma ? ((totalSelecionadosResiduo_3 / soma) * 100).toFixed(0) : 0,
     },
   ];
 

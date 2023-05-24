@@ -26,23 +26,19 @@ const Home: React.FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.textContainer}>
-        <Title level={1} className={styles.title}>
-          Medindo seu impacto, cultivando um legado
-        </Title>
-        <Title level={4} className={styles.title}>
+        <h1 className={styles.title}>Medindo seu impacto, cultivando um legado</h1>
+        <h2 className={styles.subtitle}>
           Nossa calculadora revela a quantidade de carbono emitida, mostrando o número de árvores
           que você pode plantar para semear um futuro sustentável.
-        </Title>
+        </h2>
       </div>
 
-      <div className={styles.imageContainer}>
-        <Image
-          src={`/images/tree${currentImage}.svg`}
-          alt="Tree Calculation"
-          preview={false}
-          width={595}
-        />
-      </div>
+      <Image
+        src={`/images/tree${currentImage}.svg`}
+        alt="Tree Calculation"
+        preview={false}
+        className={styles.image}
+      />
     </div>
   );
 };
